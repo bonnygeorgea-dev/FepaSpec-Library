@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>FEPA Standards — MGP Koratty</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='16' fill='%23006B99'/><text x='16' y='22' font-size='16' font-family='Arial' font-weight='bold' fill='white' text-anchor='middle'>F</text></svg>">
+<style>
+  :root{ --teal:#006B99; --teal-d:#004f72; --grey:#595959; --line:#e3e8ec; --bg:#f4f6f8; --card:#ffffff;
+         --min:#0a7d3e; --max:#b3261e; }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+  html,body{margin:0;padding:0;}
+  body{font-family:-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:#1a1f24;
+       font-size:13px;line-height:1.4;padding-bottom:66px;}
+  /* Header */
+  header{background:var(--teal);color:#fff;padding:14px 16px 12px;position:sticky;top:0;z-index:50;
+         box-shadow:0 2px 6px rgba(0,0,0,.12);}
+  header h1{margin:0;font-size:22px;font-weight:600;letter-spacing:.3px;}
+  header .sub{font-size:11.5px;opacity:.9;margin-top:3px;}
+  /* Layout */
+  .wrap{max-width:760px;margin:0 auto;padding:12px;}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px;margin-bottom:12px;
+        box-shadow:0 1px 3px rgba(0,0,0,.04);}
+  /* Selected grit head */
+  .selhead{display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
+  .gritbig{font-size:34px;font-weight:800;color:var(--teal);line-height:1;min-width:74px;}
+  .metrics{display:flex;gap:18px;flex-wrap:wrap;font-size:12px;}
+  .metrics .m .lbl{color:var(--grey);font-size:10.5px;text-transform:uppercase;letter-spacing:.4px;}
+  .metrics .m .val{font-size:14px;font-weight:600;}
+  .grpspec{margin-top:10px;font-size:11px;color:var(--grey);background:#eef4f8;border-radius:8px;
+           padding:7px 10px;line-height:1.5;}
+  .grpspec b{color:var(--teal-d);}
+  /* Sieve table */
+  table{width:100%;border-collapse:collapse;margin-top:12px;font-size:13px;}
+  thead th{background:var(--teal);color:#fff;font-weight:600;padding:9px 6px;text-align:center;font-size:11.5px;
+           text-transform:uppercase;letter-spacing:.3px;}
+  thead th:first-child{border-radius:8px 0 0 0;}
+  thead th:last-child{border-radius:0 8px 0 0;}
+  tbody td{padding:9px 6px;text-align:center;border-bottom:1px solid var(--line);}
+  tbody tr:nth-child(even){background:#fafbfc;}
+  tbody tr:last-child td{border-bottom:none;}
+  .mesh{font-weight:700;color:#1a1f24;}
+  .um{color:var(--grey);}
+  .ret{font-weight:700;}
+  .ret.min{color:var(--min);}
+  .ret.max{color:var(--max);}
+  .ret.zero{color:var(--grey);}
+  .ret.band{color:var(--teal-d);}
+  .rownote{font-size:10px;color:var(--grey);display:block;font-weight:400;margin-top:1px;}
+  /* Grit grid */
+  .gridttl{font-size:11px;color:var(--grey);text-transform:uppercase;letter-spacing:.5px;margin:2px 0 8px;font-weight:600;}
+  .grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;}
+  .gbtn{background:var(--teal);color:#fff;border:none;border-radius:8px;padding:11px 0;font-size:13px;
+         font-weight:600;cursor:pointer;transition:transform .05s,background .15s;}
+  .gbtn:active{transform:scale(.94);}
+  .gbtn.on{background:#0c2233;box-shadow:inset 0 0 0 2px #fff, 0 0 0 2px var(--teal);}
+  /* Placeholder tabs */
+  .ph{text-align:center;padding:40px 16px;color:var(--grey);}
+  .ph .big{font-size:44px;margin-bottom:8px;}
+  .ph h3{margin:0 0 6px;color:#1a1f24;font-size:16px;}
+  .ph p{margin:0;font-size:12.5px;max-width:340px;margin:0 auto;}
+  /* Reference tables (micro / P tabs) */
+  .tabnote{font-size:11.5px;color:var(--grey);background:#eef4f8;border-radius:8px;padding:8px 10px;
+           margin-bottom:10px;line-height:1.5;}
+  .tabnote b{color:var(--teal-d);}
+  .scrollx{overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:10px;border:1px solid var(--line);}
+  .reftable{width:100%;border-collapse:collapse;font-size:12.5px;min-width:340px;margin:0;}
+  .reftable thead th{background:var(--teal);color:#fff;padding:8px 8px;position:sticky;top:0;white-space:nowrap;}
+  .reftable thead th small{display:block;font-weight:400;font-size:9.5px;opacity:.85;text-transform:none;letter-spacing:0;}
+  .reftable td{padding:7px 8px;text-align:center;border-bottom:1px solid var(--line);white-space:nowrap;}
+  .reftable tbody tr:nth-child(even){background:#fafbfc;}
+  .reftable .g{font-weight:700;color:var(--teal);text-align:left;}
+  .reftable .d50{font-weight:700;}
+  .reftable .lo{color:var(--min);font-weight:600;}
+  .reftable .hi{color:var(--max);font-weight:600;}
+  .chip{display:inline-block;font-size:9.5px;padding:2px 7px;border-radius:20px;background:#e7eef3;color:var(--grey);}
+  .chip.vc{background:#fde8e6;color:#8f1d16;} .chip.c{background:#fdeee0;color:#8a4b12;}
+  .chip.m{background:#fef7df;color:#7a5c00;} .chip.f{background:#e6f4ea;color:#1a6b39;}
+  .chip.vf{background:#e4f1f8;color:#12557a;} .chip.uf{background:#ece6f6;color:#4b2a7a;}
+  /* Bottom nav */
+  nav{position:fixed;bottom:0;left:0;right:0;height:56px;background:#0c2233;display:flex;z-index:60;
+      box-shadow:0 -2px 8px rgba(0,0,0,.2);}
+  nav button{flex:1;background:none;border:none;color:#9db3c2;font-size:13px;font-weight:600;cursor:pointer;
+             display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;padding:0;}
+  nav button .t2{font-size:8.5px;font-weight:400;opacity:.7;}
+  nav button.on{color:#fff;}
+  nav button.on::after{content:"";position:absolute;bottom:0;width:40px;height:3px;background:var(--teal);
+                       border-radius:3px 3px 0 0;transform:translateY(0);}
+  nav button{position:relative;}
+  footer{display:flex;flex-direction:column;align-items:center;gap:3px;
+         padding:14px 12px 10px;border-top:1px solid var(--line);margin-top:6px;}
+  footer .fcredit{font-size:11.5px;color:var(--grey);letter-spacing:.3px;}
+  footer .fcredit strong{color:var(--teal-d);font-weight:600;letter-spacing:.2px;}
+  footer .fver{font-size:9.5px;color:#9aa6ad;letter-spacing:1px;text-transform:uppercase;}
+  @media(min-width:620px){ body{font-size:14px;} .grid{grid-template-columns:repeat(9,1fr);} }
+</style>
+</head>
+<body>
+<header>
+  <h1>FEPA Standards</h1>
+  <div class="sub" id="subhead">FEPA-Standard 43-2:2006 · Coated Abrasives · Micro Grits (P240–P3000)</div>
+</header>
+
+<div class="wrap">
+  <!-- FEPA MACRO (Fm) -->
+  <div id="tab-fm" style="display:none">
+    <div class="card" id="detail"><!-- filled by JS --></div>
+    <div class="card">
+      <div class="gridttl">Select grit — FEPA-F Macro</div>
+      <div class="grid" id="gritgrid"></div>
+    </div>
+  </div>
+
+  <!-- FEPA-P COATED MACRO (Pm) -->
+  <div id="tab-pm" style="display:none">
+    <div class="card" id="pdetail"><!-- filled by JS --></div>
+    <div class="card">
+      <div class="gridttl">Select grit — FEPA-P Coated Macro</div>
+      <div class="grid" id="pgritgrid"></div>
+    </div>
+  </div>
+  <div id="tab-fu" style="display:none"></div>
+  <div id="tab-pu"></div>
+  <div id="tab-ju" style="display:none"></div>
+</div>
+
+<footer>
+  <span class="fcredit">Created by <strong>Bonny George</strong></span>
+  <span class="fver" id="ver"></span>
+</footer>
+
+<nav>
+  <button data-tab="fm" onclick="switchTab('fm',this)">Fm<span class="t2">FEPA Macro</span></button>
+  <button data-tab="pm" onclick="switchTab('pm',this)">Pm<span class="t2">FEPA-P Macro</span></button>
+  <button data-tab="fu" onclick="switchTab('fu',this)">Fµ<span class="t2">FEPA Micro</span></button>
+  <button class="on" data-tab="pu" onclick="switchTab('pu',this)">Pµ<span class="t2">FEPA-P Micro</span></button>
+  <button data-tab="ju" onclick="switchTab('ju',this)">Jµ<span class="t2">JIS Micro</span></button>
+</nav>
+
+<script>
+/* ========= FEPA Standards Reference — MGP Koratty ========= */
+const APP_VERSION = "v1.7";
+const LAST_UPDATED = "16 Jul 2026";
+document.getElementById('ver').textContent = APP_VERSION;
+
+/* ASTM E11 sieve openings in microns (US mesh no. -> µm) */
+const MESH_UM = {
+  '5/16':8000,'0.265':6700,'3½':5600,'4':4750,'5':4000,'6':3350,'7':2800,'8':2360,
+  '10':2000,'12':1700,'14':1400,'16':1180,'18':1000,'20':850,'25':710,'30':600,
+  '35':500,'40':425,'45':355,'50':300,'60':250,'70':212,'80':180,'100':150,
+  '120':125,'140':106,'170':90,'200':75,'230':63,'270':53,'325':45
+};
+
+/* Retention spec groups (% cumulative retained; per FEPA 42-1:2006)
+   c2 = max on coarse-control sieve, c3 = min on next sieve,
+   c4 = min cumulative on combination, thru = fines control (3% max through) */
+const GROUPS = {
+  A:{c2:20,c3:40,c4:70,thru:true},   // F4–F7
+  B:{c2:20,c3:45,c4:70,thru:true},   // F8–F22
+  C:{c2:25,c3:45,c4:65,thru:true},   // F24–F36  (No.2 max = 25% per CUMI board)
+  D:{c2:30,c3:40,c4:65,thru:true},   // F40–F60
+  E:{c2:25,c3:40,c4:65,thru:true},   // F70–F80
+  F:{c2:20,c3:40,c4:65,thru:true},   // F90–F120
+  G:{c2:15,c3:40,c4:65,thru:true},   // F150–F180 (F180 no fines sieve)
+  H:{c2:15,c3:40,c4:60,thru:false}   // F220
+};
+
+/* Each grit: [coarseLimit, coarseControl, control3, [combination sieves], finesSieve|null], group, approx mean Ø (µm) */
+const GRITS = {
+  F4:  {s:['5/16','3½','4',['4','5'],'6'],   g:'A', d:null},
+  F5:  {s:['0.265','4','5',['5','6'],'7'],   g:'A', d:4125},
+  F6:  {s:['3½','5','6',['6','7'],'8'],      g:'A', d:3460},
+  F7:  {s:['4','6','7',['7','8'],'10'],      g:'A', d:2900},
+  F8:  {s:['5','7','8',['8','10'],'12'],     g:'B', d:2460},
+  F10: {s:['6','8','10',['10','12'],'14'],   g:'B', d:2085},
+  F12: {s:['7','10','12',['12','14'],'16'],  g:'B', d:1765},
+  F14: {s:['8','12','14',['14','16'],'18'],  g:'B', d:1470},
+  F16: {s:['10','14','16',['16','18'],'20'], g:'B', d:1230},
+  F20: {s:['12','16','18',['18','20'],'25'], g:'B', d:1040},
+  F22: {s:['14','18','20',['20','25'],'30'], g:'B', d:885},
+  F24: {s:['16','20','25',['25','30'],'35'], g:'C', d:745},
+  F30: {s:['18','25','30',['30','35'],'40'], g:'C', d:625},
+  F36: {s:['20','30','35',['35','40'],'45'], g:'C', d:525},
+  F40: {s:['25','35','40',['40','45'],'50'], g:'D', d:438},
+  F46: {s:['30','40','45',['45','50'],'60'], g:'D', d:370},
+  F54: {s:['35','45','50',['50','60'],'70'], g:'D', d:310},
+  F60: {s:['40','50','60',['60','70'],'80'], g:'D', d:260},
+  F70: {s:['45','60','70',['70','80'],'100'],g:'E', d:218},
+  F80: {s:['50','70','80',['80','100'],'120'],g:'E',d:185},
+  F90: {s:['60','80','100',['100','120'],'140'],g:'F',d:154},
+  F100:{s:['70','100','120',['120','140'],'200'],g:'F',d:129},
+  F120:{s:['80','120','140',['140','170'],'230'],g:'F',d:109},
+  F150:{s:['100','140','200',['200','230'],'325'],g:'G',d:82},
+  F180:{s:['120','170','200',['200','230','270'],null],g:'G',d:69},
+  F220:{s:['140','200','230',['230','270','325'],null],g:'H',d:58}
+};
+
+const ORDER = ['F4','F5','F6','F7','F8','F10','F12','F14','F16','F20','F22','F24','F30','F36',
+               'F40','F46','F54','F60','F70','F80','F90','F100','F120','F150','F180','F220'];
+
+function um(mesh){ return MESH_UM[mesh] != null ? MESH_UM[mesh] : '—'; }
+
+function renderDetail(grit){
+  const G = GRITS[grit], grp = GROUPS[G.g], s = G.s;
+  const rows = [];
+  // Row 1 — coarse / max grit limit: 0% retained (100% passes)
+  rows.push({no:'1', mesh:s[0], um:um(s[0]), ret:'0', cls:'zero', note:'max grit'});
+  // Row 2 — coarse control: ≤ c2%
+  rows.push({no:'2', mesh:s[1], um:um(s[1]), ret:'≤'+grp.c2+'%', cls:'max', note:'coarse control'});
+  // Row 3 — control sieve: ≥ c3%
+  rows.push({no:'3', mesh:s[2], um:um(s[2]), ret:'≥'+grp.c3+'%', cls:'min', note:'cumulative'});
+  // Row 4 — combination sieves: ≥ c4% (label spans the point numbers, e.g. 3+4 or 3+4+5)
+  const combo = s[3];
+  const comboNo = combo.map((_,i)=>3+i).join('+');
+  rows.push({no:comboNo, mesh:combo.join(' + '), um:um(combo[combo.length-1]),
+             ret:'≥'+grp.c4+'%', cls:'min', note:'cumulative on '+combo.join('+')});
+  // Row 5 — fines control (if any): ≤3% through
+  if(s[4]) rows.push({no:String(3+combo.length), mesh:s[4], um:um(s[4]), ret:'≤3%', cls:'max', note:'through (fines)'});
+
+  const trs = rows.map(r=>`<tr>
+      <td>${r.no}</td>
+      <td class="mesh">${r.mesh}</td>
+      <td class="um">${r.um}</td>
+      <td><span class="ret ${r.cls}">${r.ret}</span><span class="rownote">${r.note}</span></td>
+    </tr>`).join('');
+
+  const specLine = `<b>100% min</b> ${grp.c2}% max · <b>${grp.c3}% min</b> · ${grp.c4}% min`
+                   + (grp.thru? ' · <b>3% max</b> through fines' : ' · (no fines sieve)');
+
+  document.getElementById('detail').innerHTML = `
+    <div class="selhead">
+      <div class="gritbig">${grit}</div>
+      <div class="metrics">
+        <div class="m"><div class="lbl">Group</div><div class="val">Table ${G.g}</div></div>
+        <div class="m"><div class="lbl">≈ Mean Ø</div><div class="val">${G.d!=null? G.d+' µm':'—'}</div></div>
+        <div class="m"><div class="lbl">Method</div><div class="val">Sieving</div></div>
+      </div>
+    </div>
+    <div class="grpspec">Grading limits (cumulative % retained): ${specLine}</div>
+    <table>
+      <thead><tr><th>No.</th><th>Sieve&nbsp;No.</th><th style="text-transform:none">Micron (µm)</th><th>Retention</th></tr></thead>
+      <tbody>${trs}</tbody>
+    </table>`;
+}
+
+let current = 'F220';
+function selectGrit(grit){
+  current = grit;
+  renderDetail(grit);
+  document.querySelectorAll('#gritgrid .gbtn').forEach(b=>b.classList.toggle('on', b.dataset.grit===grit));
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+/* Build grit grid */
+(function(){
+  const grid = document.getElementById('gritgrid');
+  grid.innerHTML = ORDER.map(g=>`<button class="gbtn" data-grit="${g}" onclick="selectGrit('${g}')">${g}</button>`).join('');
+  selectGrit(current);
+})();
+
+/* ---------- FEPA 43-1:2006 COATED macro grits P12–P220 (CUMI board) ----------
+   [d50, No.1, No.2, No.2max%, [No.2+3], No.2+3 range%, [No.2+3+4], No.2+3+4 range%,
+    [No.2+3+4+5], No.2+3+4+5 min%, No.5 sieve, No.5 max% through] */
+const P_MACRO = {
+  P12:[1815,'6','8',1,['8','10'],'10–18',['8','10','12'],'52–70',['8','10','12','14'],92,'14',8],
+  P16:[1324,'8','12',3,['12','14'],'20–32',['12','14','16'],'66–84',['12','14','16','18'],96,'18',4],
+  P20:[1000,'12','16',7,['16','18'],'34–50',['16','18','20'],'80–92',['16','18','20','25'],96,'25',4],
+  P24:[764,'14','18',1,['18','20'],'10–18',['18','20','25'],'52–70',['18','20','25','30'],92,'30',8],
+  P30:[642,'16','20',1,['20','25'],'10–18',['20','25','30'],'52–70',['20','25','30','35'],92,'35',8],
+  P36:[538,'18','25',1,['25','30'],'10–18',['25','30','35'],'52–70',['25','30','35','40'],92,'40',8],
+  P40:[425,'25','35',7,['35','40'],'34–50',['35','40','45'],'80–92',['35','40','45','50'],96,'50',4],
+  P50:[336,'30','40',3,['40','45'],'20–32',['40','45','50'],'66–84',['40','45','50','60'],96,'60',4],
+  P60:[269,'35','45',1,['45','50'],'10–18',['45','50','60'],'52–70',['45','50','60','70'],92,'70',8],
+  P80:[201,'45','60',3,['60','70'],'20–32',['60','70','80'],'66–84',['60','70','80','100'],96,'100',4],
+  P100:[162,'50','70',1,['70','80'],'10–18',['70','80','100'],'52–70',['70','80','100','120'],92,'120',8],
+  P120:[125,'70','100',7,['100','120'],'34–50',['100','120','140'],'80–92',['100','120','140','170'],96,'170',4],
+  P150:[100,'80','120',3,['120','140'],'20–32',['120','140','170'],'66–84',['120','140','170','200'],96,'200',4],
+  P180:[82,'100','140',2,['140','170'],'10–20',['140','170','200'],'50–74',['140','170','200','230'],90,'230',10],
+  P220:[68,'120','170',2,['170','200'],'10–20',['170','200','230'],'50–74',['170','200','230','270'],90,'270',10]
+};
+const P_ORDER = Object.keys(P_MACRO);
+
+function renderPDetail(grit){
+  const p = P_MACRO[grit];
+  const rows = [
+    {no:'1', mesh:p[1], um:um(p[1]), ret:'0', cls:'zero', note:'max grit (100% pass)'},
+    {no:'2', mesh:p[2], um:um(p[2]), ret:'≤'+p[3]+'%', cls:'max', note:'single sieve'},
+    {no:'2+3', mesh:p[4].join(' + '), um:um(p[4][p[4].length-1]), ret:p[5]+'%', cls:'band', note:'cumulative'},
+    {no:'2+3+4', mesh:p[6].join(' + '), um:um(p[6][p[6].length-1]), ret:p[7]+'%', cls:'band', note:'cumulative'},
+    {no:'2+3+4+5', mesh:p[8].join(' + '), um:um(p[8][p[8].length-1]), ret:'≥'+p[9]+'%', cls:'min', note:'cumulative'},
+    {no:'5', mesh:p[10], um:um(p[10]), ret:'≤'+p[11]+'%', cls:'max', note:'through (fines)'}
+  ];
+  const trs = rows.map(r=>`<tr>
+      <td>${r.no}</td><td class="mesh">${r.mesh}</td><td class="um">${r.um}</td>
+      <td><span class="ret ${r.cls}">${r.ret}</span><span class="rownote">${r.note}</span></td></tr>`).join('');
+  document.getElementById('pdetail').innerHTML = `
+    <div class="selhead">
+      <div class="gritbig">${grit}</div>
+      <div class="metrics">
+        <div class="m"><div class="lbl">Type</div><div class="val">Coated</div></div>
+        <div class="m"><div class="lbl">≈ Mean Ø</div><div class="val">${p[0]} µm</div></div>
+        <div class="m"><div class="lbl">Method</div><div class="val">Sieving</div></div>
+      </div>
+    </div>
+    <div class="grpspec">Cumulative % retained on No.1 → No.5 control sieves. Middle rows are min–max
+      windows; No.5 is the ≤3%-fines pass-through sieve.</div>
+    <table>
+      <thead><tr><th>No.</th><th>Sieve&nbsp;No.</th><th style="text-transform:none">Micron (µm)</th><th>Retention</th></tr></thead>
+      <tbody>${trs}</tbody>
+    </table>`;
+}
+let pcurrent = 'P220';
+function selectPGrit(grit){
+  pcurrent = grit;
+  renderPDetail(grit);
+  document.querySelectorAll('#pgritgrid .gbtn').forEach(b=>b.classList.toggle('on', b.dataset.grit===grit));
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+(function(){
+  const grid = document.getElementById('pgritgrid');
+  grid.innerHTML = P_ORDER.map(g=>`<button class="gbtn" data-grit="${g}" onclick="selectPGrit('${g}')">${g}</button>`).join('');
+  selectPGrit(pcurrent);
+})();
+/* ---------- FEPA 43-2:2006 coated MICRO P240–P3000 : ds0, ds3, ds50 lower, ds50 median, ds50 upper, ds95 (µm) ---------- */
+const P_MICRO = [
+  ['P240','<110','<81.7','56.5','58.5 ± 2.0','60.5','>44.5'],['P280','<101','<74.0','50.2','52.2 ± 2.0','54.2','>39.2'],
+  ['P320','<94','<66.8','44.7','46.2 ± 1.5','47.7','>34.2'],['P360','<87','<60.3','39.0','40.5 ± 1.5','42.0','>29.6'],
+  ['P400','<81','<53.9','33.5','35.0 ± 1.5','36.5','>25.2'],['P500','<77','<48.3','28.7','30.2 ± 1.5','31.7','>21.5'],
+  ['P600','<72','<43.0','24.8','25.8 ± 1.0','26.8','>18.0'],['P800','<67','<38.1','20.8','21.8 ± 1.0','22.8','>15.1'],
+  ['P1000','<63','<33.7','17.3','18.3 ± 1.0','19.3','>12.4'],['P1200','<58','<29.7','14.3','15.3 ± 1.0','16.3','>10.2'],
+  ['P1500','<58','<25.8','11.6','12.6 ± 1.0','13.6','>8.3'],['P2000','<58','<22.4','9.5','10.3 ± 0.8','11.1','>6.7'],
+  ['P2500','<58','<19.3','7.9','8.4 ± 0.5','8.9','>5.4'],['P3000','—','<16.2','6.4','6.9 ± 0.5','7.4','>4.2']
+];
+/* ---------- FEPA 42-2:2006 bonded MICRO F230–F1500 : ds3, ds50 lower, ds50 median, ds50 upper, ds94/ds80* (µm) ---------- */
+const F_MICRO = [
+  ['F230','<82.0','50.0','53.0 ± 3.0','56.0','>34.0'],['F240','<70.0','42.5','44.5 ± 2.0','46.5','>28.0'],['F280','<59.0','35.0','36.5 ± 1.5','38.0','>22.0'],
+  ['F320','<49.0','27.7','29.2 ± 1.5','30.7','>16.5'],['F360','<40.0','21.3','22.8 ± 1.5','24.3','>12.0'],['F400','<32.0','16.3','17.3 ± 1.0','18.3','>8.0'],
+  ['F500','<25.0','11.8','12.8 ± 1.0','13.8','>5.0'],['F600','<19.0','8.3','9.3 ± 1.0','10.3','>3.0'],['F800','<14.0','5.5','6.5 ± 1.0','7.5','>2.0'],
+  ['F1000','<10.0','3.7','4.5 ± 0.8','5.3','>1.0'],['F1200','<7.0','2.5','3.0 ± 0.5','3.5','>1.0*'],['F1500','<5.0','1.6','2.0 ± 0.4','2.4','>0.8*']
+];
+/* ---------- JIS R6001 micro #240–#8000: ds0 max, ds3 max, ds50 range, ds94 min (µm) ---------- */
+const J_MICRO = [
+  ['#240','127','103','54.0–60.0','40'],['#280','112','87','45.0–51.0','33'],['#320','98','74','37.5–42.5','27'],
+  ['#360','86','66','33.0–37.0','23'],['#400','75','58','28.0–32.0','20'],['#500','63','50','23.0–27.0','16'],
+  ['#600','53','43','18.5–21.5','13'],['#700','45','37','15.7–18.3','11'],['#800','38','31','13.0–15.0','9.0'],
+  ['#1000','32','27','10.5–12.5','7.0'],['#1200','27','23','8.7–10.3','5.5'],['#1500','23','20','7.4–8.6','4.5'],
+  ['#2000','19','17','6.1–7.3','4.0'],['#2500','16','14','5.0–6.0','3.0'],['#3000','13','11','3.5–4.5','2.0'],
+  ['#4000','11','8.0','2.6–3.4','1.3'],['#6000','8.0','5.0','1.6–2.4','0.8'],['#8000','6.0','3.5','0.9–1.5','0.8*']
+];
+
+
+/* FEPA coated micro table (ds0 / ds3 / ds50 lower·median·upper / ds95) */
+function coatedMicroTable(){
+  const body = P_MICRO.map(r=>`<tr>
+      <td class="g">${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td>
+      <td class="lo">${r[3]}</td><td class="d50">${r[4]}</td><td class="hi">${r[5]}</td><td>${r[6]}</td></tr>`).join('');
+  return `<div class="scrollx"><table class="reftable">
+      <thead><tr>
+        <th>Grit</th><th>d<sub>s0</sub><small>µm · max</small></th><th>d<sub>s3</sub><small>µm · max</small></th>
+        <th>Lower<small>d₅₀ min</small></th><th>d<sub>s50</sub><small>µm · median</small></th><th>Upper<small>d₅₀ max</small></th>
+        <th>d<sub>s95</sub><small>µm · min</small></th>
+      </tr></thead><tbody>${body}</tbody></table></div>`;
+}
+
+/* FEPA bonded micro table (ds3 / ds50 lower·median·upper / ds94–ds80*) */
+function bondedMicroTable(){
+  const body = F_MICRO.map(r=>`<tr>
+      <td class="g">${r[0]}</td><td>${r[1]}</td>
+      <td class="lo">${r[2]}</td><td class="d50">${r[3]}</td><td class="hi">${r[4]}</td><td>${r[5]}</td></tr>`).join('');
+  return `<div class="scrollx"><table class="reftable">
+      <thead><tr>
+        <th>Grit</th><th>d<sub>s3</sub><small>µm · max</small></th>
+        <th>Lower<small>d₅₀ min</small></th><th>d<sub>s50</sub><small>µm · median</small></th><th>Upper<small>d₅₀ max</small></th>
+        <th>d<sub>s94</sub> / d<sub>s80</sub>*<small>µm · min</small></th>
+      </tr></thead><tbody>${body}</tbody></table></div>`;
+}
+
+/* JIS R6001 micro table */
+function jTable(){
+  const body = J_MICRO.map(r=>`<tr>
+      <td class="g">${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td><td class="d50">${r[3]}</td><td>${r[4]}</td></tr>`).join('');
+  return `<div class="scrollx"><table class="reftable">
+      <thead><tr>
+        <th>Grit</th><th>d<sub>s0</sub> max<small>µm</small></th><th>d<sub>s3</sub> max<small>µm</small></th>
+        <th>d<sub>s50</sub> range<small>µm · median</small></th><th>d<sub>s94</sub> min<small>µm</small></th>
+      </tr></thead><tbody>${body}</tbody></table></div>`;
+}
+
+/* Render the reference tabs (Pm is built separately as an interactive grit view) */
+document.getElementById('tab-pu').innerHTML =
+  `<div class="card"><div class="tabnote"><b>FEPA 43-2:2006 · Coated · Micro Grits (P240–P3000)</b> — grain for
+   <b>coated</b> abrasives. ds50 is shown as <b>Lower – median – Upper</b> (median ± tolerance); the ds50 grade is
+   in-spec only between the Lower and Upper limits. ds0/ds3 are top-size maxima, ds95 the fine-end minimum.
+   P3000 ds0 is not specified.</div>${coatedMicroTable()}</div>`;
+document.getElementById('tab-fu').innerHTML =
+  `<div class="card"><div class="tabnote"><b>FEPA 42-2:2006 · Bonded · Micro Grits (F230–F1500)</b> — grain for
+   <b>bonded</b> abrasives. ds50 is shown as <b>Lower – median – Upper</b> (median ± tolerance); ds3 is the coarse
+   max and ds94 the fine min. * for F1200/F1500 the last figure is ds80, not ds94.</div>${bondedMicroTable()}</div>`;
+document.getElementById('tab-ju').innerHTML =
+  `<div class="card"><div class="tabnote"><b>JIS R6001 micro · #240–#8000</b> — Japanese standard for abrasive
+   micro grains. Defined by ds0 (max size), ds3 (coarse control), ds50 (median band) and ds94 (fine control).
+   * #8000 d₉₄ is quoted at a reduced cumulative point.</div>${jTable()}</div>`;
+
+const HEADS = {
+  fm:'FEPA-Standard 42-1:2006 · Bonded Abrasives · Macro Grits (F4–F220)',
+  pm:'FEPA-Standard 43-1:2006 · Coated Abrasives · Macro Grits (P12–P220)',
+  fu:'FEPA-Standard 42-2:2006 · Bonded Abrasives · Micro Grits (F230–F1500)',
+  pu:'FEPA-Standard 43-2:2006 · Coated Abrasives · Micro Grits (P240–P3000)',
+  ju:'JIS R6001 · Abrasive Micro Grits (J-series)'
+};
+function switchTab(tab, btn){
+  ['fm','pm','fu','pu','ju'].forEach(t=>document.getElementById('tab-'+t).style.display = (t===tab?'block':'none'));
+  document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('on', b===btn));
+  document.getElementById('subhead').textContent = HEADS[tab];
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
+</body>
+</html>
