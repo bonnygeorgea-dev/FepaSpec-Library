@@ -2,104 +2,21 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>FEPA Standards — MGP Koratty</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>MGP Standards · 2.0</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='16' fill='%23006B99'/><text x='16' y='22' font-size='16' font-family='Arial' font-weight='bold' fill='white' text-anchor='middle'>F</text></svg>">
-<style>
-  :root{ --teal:#006B99; --teal-d:#004f72; --grey:#595959; --line:#e3e8ec; --bg:#f4f6f8; --card:#ffffff;
-         --min:#0a7d3e; --max:#b3261e; }
-  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
-  html,body{margin:0;padding:0;}
-  body{font-family:-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:#1a1f24;
-       font-size:13px;line-height:1.4;padding-bottom:66px;}
-  /* Header */
-  header{background:var(--teal);color:#fff;padding:14px 16px 12px;position:sticky;top:0;z-index:50;
-         box-shadow:0 2px 6px rgba(0,0,0,.12);}
-  header h1{margin:0;font-size:22px;font-weight:600;letter-spacing:.3px;}
-  header .sub{font-size:11.5px;opacity:.9;margin-top:3px;}
-  /* Layout */
-  .wrap{max-width:760px;margin:0 auto;padding:12px;}
-  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px;margin-bottom:12px;
-        box-shadow:0 1px 3px rgba(0,0,0,.04);}
-  /* Selected grit head */
-  .selhead{display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
-  .gritbig{font-size:34px;font-weight:800;color:var(--teal);line-height:1;min-width:74px;}
-  .metrics{display:flex;gap:18px;flex-wrap:wrap;font-size:12px;}
-  .metrics .m .lbl{color:var(--grey);font-size:10.5px;text-transform:uppercase;letter-spacing:.4px;}
-  .metrics .m .val{font-size:14px;font-weight:600;}
-  .grpspec{margin-top:10px;font-size:11px;color:var(--grey);background:#eef4f8;border-radius:8px;
-           padding:7px 10px;line-height:1.5;}
-  .grpspec b{color:var(--teal-d);}
-  /* Sieve table */
-  table{width:100%;border-collapse:collapse;margin-top:12px;font-size:13px;}
-  thead th{background:var(--teal);color:#fff;font-weight:600;padding:9px 6px;text-align:center;font-size:11.5px;
-           text-transform:uppercase;letter-spacing:.3px;}
-  thead th:first-child{border-radius:8px 0 0 0;}
-  thead th:last-child{border-radius:0 8px 0 0;}
-  tbody td{padding:9px 6px;text-align:center;border-bottom:1px solid var(--line);}
-  tbody tr:nth-child(even){background:#fafbfc;}
-  tbody tr:last-child td{border-bottom:none;}
-  .mesh{font-weight:700;color:#1a1f24;}
-  .um{color:var(--grey);}
-  .ret{font-weight:700;}
-  .ret.min{color:var(--min);}
-  .ret.max{color:var(--max);}
-  .ret.zero{color:var(--grey);}
-  .ret.band{color:var(--teal-d);}
-  .rownote{font-size:10px;color:var(--grey);display:block;font-weight:400;margin-top:1px;}
-  /* Grit grid */
-  .gridttl{font-size:11px;color:var(--grey);text-transform:uppercase;letter-spacing:.5px;margin:2px 0 8px;font-weight:600;}
-  .grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;}
-  .gbtn{background:var(--teal);color:#fff;border:none;border-radius:8px;padding:11px 0;font-size:13px;
-         font-weight:600;cursor:pointer;transition:transform .05s,background .15s;}
-  .gbtn:active{transform:scale(.94);}
-  .gbtn.on{background:#0c2233;box-shadow:inset 0 0 0 2px #fff, 0 0 0 2px var(--teal);}
-  /* Placeholder tabs */
-  .ph{text-align:center;padding:40px 16px;color:var(--grey);}
-  .ph .big{font-size:44px;margin-bottom:8px;}
-  .ph h3{margin:0 0 6px;color:#1a1f24;font-size:16px;}
-  .ph p{margin:0;font-size:12.5px;max-width:340px;margin:0 auto;}
-  /* Reference tables (micro / P tabs) */
-  .tabnote{font-size:11.5px;color:var(--grey);background:#eef4f8;border-radius:8px;padding:8px 10px;
-           margin-bottom:10px;line-height:1.5;}
-  .tabnote b{color:var(--teal-d);}
-  .scrollx{overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:10px;border:1px solid var(--line);}
-  .reftable{width:100%;border-collapse:collapse;font-size:12.5px;min-width:340px;margin:0;}
-  .reftable thead th{background:var(--teal);color:#fff;padding:8px 8px;position:sticky;top:0;white-space:nowrap;}
-  .reftable thead th small{display:block;font-weight:400;font-size:9.5px;opacity:.85;text-transform:none;letter-spacing:0;}
-  .reftable td{padding:7px 8px;text-align:center;border-bottom:1px solid var(--line);white-space:nowrap;}
-  .reftable tbody tr:nth-child(even){background:#fafbfc;}
-  .reftable .g{font-weight:700;color:var(--teal);text-align:left;}
-  .reftable .d50{font-weight:700;}
-  .reftable .lo{color:var(--min);font-weight:600;}
-  .reftable .hi{color:var(--max);font-weight:600;}
-  .chip{display:inline-block;font-size:9.5px;padding:2px 7px;border-radius:20px;background:#e7eef3;color:var(--grey);}
-  .chip.vc{background:#fde8e6;color:#8f1d16;} .chip.c{background:#fdeee0;color:#8a4b12;}
-  .chip.m{background:#fef7df;color:#7a5c00;} .chip.f{background:#e6f4ea;color:#1a6b39;}
-  .chip.vf{background:#e4f1f8;color:#12557a;} .chip.uf{background:#ece6f6;color:#4b2a7a;}
-  /* Bottom nav */
-  nav{position:fixed;bottom:0;left:0;right:0;height:56px;background:#0c2233;display:flex;z-index:60;
-      box-shadow:0 -2px 8px rgba(0,0,0,.2);}
-  nav button{flex:1;background:none;border:none;color:#9db3c2;font-size:13px;font-weight:600;cursor:pointer;
-             display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;padding:0;}
-  nav button .t2{font-size:8.5px;font-weight:400;opacity:.7;}
-  nav button.on{color:#fff;}
-  nav button.on::after{content:"";position:absolute;bottom:0;width:40px;height:3px;background:var(--teal);
-                       border-radius:3px 3px 0 0;transform:translateY(0);}
-  nav button{position:relative;}
-  footer{display:flex;flex-direction:column;align-items:center;gap:3px;
-         padding:14px 12px 10px;border-top:1px solid var(--line);margin-top:6px;}
-  footer .fcredit{font-size:11.5px;color:var(--grey);letter-spacing:.3px;}
-  footer .fcredit strong{color:var(--teal-d);font-weight:600;letter-spacing:.2px;}
-  footer .fver{font-size:9.5px;color:#9aa6ad;letter-spacing:1px;text-transform:uppercase;}
-  @media(min-width:620px){ body{font-size:14px;} .grid{grid-template-columns:repeat(9,1fr);} }
+<style>:root{--teal:#0066cc;--teal-d:#064d9c;--grey:#626b79;--line:#e5e8ef;--bg:#f5f6fa;--card:#fff;--min:#14734c;--max:#b73535;--ink:#172233;--nav-height:86px;color-scheme:light}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}html{scroll-padding-top:90px}html,body{margin:0;padding:0}body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--ink);font-size:15px;line-height:1.55;padding-bottom:calc(var(--nav-height) + env(safe-area-inset-bottom));font-variant-numeric:tabular-nums;-webkit-font-smoothing:antialiased}button,input,select{font:inherit}button,a,input,select,summary{touch-action:manipulation}button{cursor:pointer}a{color:var(--teal)}button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid #76b5ff;outline-offset:3px}input:focus,select:focus{outline:3px solid #0066cc25;border-color:var(--teal)!important}header{position:sticky;top:0;z-index:50;background:#f5f6faf0;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid #e5e8efbb;padding:calc(10px + env(safe-area-inset-top)) 22px 10px}.brandbar{max-width:900px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:12px}.brand{display:flex;align-items:center;gap:10px}.brandmark{width:36px;height:36px;border-radius:11px;background:#172233;color:white;display:grid;place-items:center;font-weight:650;font-size:18px}.brandname{font-size:14px;font-weight:650;letter-spacing:-.3px}.brandmeta{font-size:10px;letter-spacing:1.4px;color:var(--grey);text-transform:uppercase}.install{border:1px solid var(--line);background:white;min-height:40px;border-radius:20px;padding:7px 14px;font-size:12px;font-weight:600;color:var(--ink)}.page-heading{max-width:900px;margin:0 auto;padding:28px 22px 16px}.eyebrow{color:var(--teal);font-size:11px;font-weight:700;letter-spacing:1.7px;text-transform:uppercase}.page-heading h1{font-size:34px;line-height:1.2;letter-spacing:-1.3px;margin:5px 0 8px;font-weight:700}.sub{font-size:13px;color:var(--grey);max-width:620px}.wrap{max-width:900px;margin:0 auto;padding:0 22px}.card{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:22px;margin-bottom:16px;box-shadow:0 3px 12px #15233803}.card h2{font-size:24px;letter-spacing:-.7px;color:var(--ink)!important}.card h3{font-size:18px;letter-spacing:-.35px;margin:0 0 12px}.card p{margin:10px 0 16px}.reference-switch{max-width:900px;margin:0 auto 20px;padding:0 22px;display:flex;gap:6px;overflow:auto;scrollbar-width:none}.reference-switch button{flex:1;white-space:nowrap;border:1px solid var(--line);background:white;color:var(--grey);min-height:44px;border-radius:12px;padding:9px 14px;font-size:12px;font-weight:600}.reference-switch button.on{background:var(--ink);color:white;border-color:var(--ink)}.selhead{display:flex;align-items:center;gap:22px;flex-wrap:wrap}.gritbig{font-size:42px;font-weight:750;letter-spacing:-1.5px;color:var(--ink);line-height:1.2}.metrics{display:flex;gap:20px;flex-wrap:wrap}.metrics .lbl{font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--grey)}.metrics .val{font-size:14px;font-weight:600;margin-top:3px}.grpspec,.tabnote{background:#f1f5fb;border:1px solid #e5edf8;color:#495d77;border-radius:12px;padding:12px 14px;font-size:12px;line-height:1.65;margin:16px 0}.grpspec b,.tabnote b{color:#223f65}table{width:100%;border-collapse:collapse;font-size:13px;margin-top:16px}thead th{background:#f3f5f8;color:#657082;padding:12px 10px;text-align:left;font-weight:600;font-size:10px;letter-spacing:.6px;text-transform:uppercase;border-bottom:1px solid var(--line)}tbody td{padding:13px 10px;text-align:left;border-bottom:1px solid #eef0f4;white-space:normal}tbody tr:last-child td{border-bottom:0}tbody tr:nth-child(even){background:#fafbfc}.mesh,.g{font-weight:650;color:var(--ink)}.um{color:var(--grey)}.ret{font-weight:650}.ret.min,.lo{color:var(--min)}.ret.max,.hi{color:var(--max)}.ret.zero{color:var(--grey)}.ret.band{color:var(--teal-d)}.rownote{display:block;font-size:10px;font-weight:400;color:var(--grey);margin-top:3px}.gridttl{font-size:11px;font-weight:650;letter-spacing:1px;text-transform:uppercase;color:var(--grey);margin:0 0 14px}.grid{display:grid;grid-template-columns:repeat(5,1fr);gap:9px}.gbtn{border:1px solid var(--line);background:#f5f7fa;color:var(--ink);border-radius:12px;min-height:46px;padding:10px 6px;font-size:13px;font-weight:600}.gbtn:active{transform:scale(.98)}.gbtn.on{background:var(--teal);border-color:var(--teal);color:white}.scrollx{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--line);border-radius:14px}.reftable{margin:0;min-width:410px}.reftable td,.reftable th{white-space:nowrap}.reftable th small{display:block;font-size:10px;font-weight:400;text-transform:none;letter-spacing:0;margin-top:3px}.reftable .d50{font-weight:650}.reftable td:first-child,.reftable th:first-child{position:sticky;left:0;background:#fff;z-index:1;border-right:1px solid var(--line)}.reftable th:first-child{background:#f3f5f8}.reftable tbody tr:nth-child(even) td:first-child{background:#fafbfc}.table-hint{color:var(--grey);font-size:11px;margin:0 0 10px}.convert-fields,.mix-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin:16px 0}.convert-fields label,.mix-fields label{display:block;min-width:0;color:#485365;font-size:12px;font-weight:600}.convert-fields select,.convert-fields input,.mix-fields select,.mix-fields input{display:block;width:100%;min-height:50px;margin-top:7px;padding:12px;border:1px solid #dce1e9;border-radius:12px;background:#fbfcfe;color:var(--ink);font-size:16px;line-height:1.3}.convert-fields [hidden],[hidden]{display:none!important}.convert-result{border-radius:16px;background:linear-gradient(130deg,#edf5ff,#f5f8fe);border:1px solid #dfebfa;padding:22px;line-height:1.9}.convert-result strong{color:#174d88;font-size:26px;letter-spacing:-.5px}.convert-help{color:var(--grey);font-size:12px;line-height:1.7}.mix-bag h3{display:flex;align-items:center;gap:10px}.mix-bag h3:before{content:'';height:9px;width:9px;border-radius:50%;background:#0066cc}.mix-bag:nth-child(2) h3:before{background:#8a62ca}.mix-bag:nth-child(3) h3:before{background:#1b9c83}.primary{background:var(--teal);border:0;border-radius:14px;color:white;font-size:15px;min-height:52px;font-weight:600;width:100%;margin:4px 0 20px;box-shadow:0 4px 10px #0066cc18}.secondary{min-height:44px;border:1px solid #d9e4f5;border-radius:11px;padding:9px 13px;background:#f1f6fd;color:#145aab;font-size:12px;font-weight:600}#mix-result:not(:empty){margin-bottom:20px}details summary{cursor:pointer;color:var(--ink);font-size:13px;font-weight:600;min-height:30px}details p{font-size:12px;color:var(--grey)}footer{max-width:900px;margin:18px auto 0;padding:12px 22px 20px;display:flex;justify-content:space-between;align-items:center;gap:12px;font-size:11px;color:#7a8392}footer strong{font-weight:500;color:#596579}.fcredit{font-size:10px;font-weight:400;color:#7d8490;letter-spacing:0}.fver{font-size:10px;letter-spacing:1px}.bottom-nav{position:fixed;bottom:0;left:0;right:0;z-index:60;display:flex;justify-content:center;gap:6px;padding:9px 16px calc(9px + env(safe-area-inset-bottom));background:#fffffff2;border-top:1px solid #e3e7ed;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}.bottom-nav button{flex:1;max-width:210px;min-height:56px;border:0;border-radius:14px;background:transparent;color:#78818d;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;font-size:10px;font-weight:600}.bottom-nav button.on{background:#eef5ff;color:var(--teal)}.bottom-nav svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}.bottom-nav button.on::after{display:none}dialog{border:1px solid var(--line);border-radius:24px;padding:26px;max-width:min(90vw,420px);color:var(--ink);box-shadow:0 20px 70px #17223333}dialog::backdrop{background:#17223355;backdrop-filter:blur(4px)}dialog h2{letter-spacing:-.6px;margin-top:0}dialog p{font-size:14px;color:var(--grey)}dialog .primary{margin:12px 0 0}@media(min-width:700px){.grid{grid-template-columns:repeat(9,1fr)}.page-heading{padding-top:38px;padding-bottom:24px}.page-heading h1{font-size:42px}.card{padding:28px}#mix-bags{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}#mix-bags .card{margin-bottom:0}#mix-bags{margin-bottom:16px}}@media(max-width:420px){.wrap{padding:0 14px}.page-heading{padding-left:18px;padding-right:18px}.reference-switch{padding:0 14px}.reference-switch button{padding:9px 10px;font-size:11px}.card{padding:17px;border-radius:19px}.mix-fields,.convert-fields{gap:12px}.grid{gap:7px}.metrics{gap:14px}tbody td{padding:11px 7px}thead th{padding:11px 7px}.convert-result strong{font-size:24px}header{padding-left:18px;padding-right:18px}}@media(max-width:340px){.mix-fields,.convert-fields{grid-template-columns:1fr}.grid{grid-template-columns:repeat(4,1fr)}}@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
 </style>
+<meta name="theme-color" content="#f5f6fa">
+<meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="apple-mobile-web-app-title" content="MGP Standards"><meta name="description" content="Abrasive grain references, unit conversion and trial blend calculations.">
+<link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 </head>
 <body>
-<header>
-  <h1>FEPA Standards</h1>
-  <div class="sub" id="subhead">FEPA-Standard 43-2:2006 · Coated Abrasives · Micro Grits (P240–P3000)</div>
-</header>
+<header><div class="brandbar"><div class="brand"><div class="brandmark" aria-hidden="true">M</div><div><div class="brandname">MGP Standards</div><div class="brandmeta">Koratty · Edition 2.0</div></div></div><button class="install" onclick="showInstall()" aria-label="Installation instructions">Install app</button></div></header>
+<div class="page-heading"><div class="eyebrow" id="section-eyebrow">THE GRAIN LIBRARY</div><h1 id="page-title">Precision, by grade.</h1><div class="sub" id="subhead">FEPA-Standard 43-2:2006 · Coated Abrasives · Micro Grits (P240–P3000)</div></div>
+<div class="reference-switch" id="reference-switch" role="group" aria-label="Reference category">
+<button data-ref="fm" onclick="switchTab('fm')">F Macro</button><button data-ref="pm" onclick="switchTab('pm')">P Macro</button><button data-ref="fu" onclick="switchTab('fu')">F Micro</button><button class="on" data-ref="pu" onclick="switchTab('pu')">P Micro</button><button data-ref="ju" onclick="switchTab('ju')">JIS Micro</button></div>
 
 <div class="wrap">
   <!-- FEPA MACRO (Fm) -->
@@ -122,25 +39,70 @@
   <div id="tab-fu" style="display:none"></div>
   <div id="tab-pu"></div>
   <div id="tab-ju" style="display:none"></div>
+  <div id="tab-cv" style="display:none">
+    <div class="card">
+      <h2 style="margin:0;color:var(--teal)">Mesh · Micron · Inch</h2>
+      <p class="convert-help">Convert sieve openings using US standard values, or estimate an opening from a mesh number. FEPA F/P and JIS grit grades are not mesh numbers.</p>
+      <div class="convert-fields">
+        <label>Conversion method<select id="conversion-mode" onchange="setConversionMode()">
+          <option value="standard">Standard sieve lookup</option>
+          <option value="micron">Microns to inches</option>
+          <option value="inch">Inches to microns</option>
+          <option value="estimate">Mesh formula estimate</option>
+        </select></label>
+        <label id="sieve-field">US sieve designation<select id="conversion-sieve" onchange="renderConversion()"></select></label>
+        <label id="value-field" hidden><span id="value-label">Opening (µm)</span><input id="conversion-value" type="number" inputmode="decimal" min="0" step="any" value="150" oninput="renderConversion()"></label>
+      </div>
+      <div id="conversion-result" class="convert-result" role="status" aria-live="polite"></div>
+      <p id="conversion-note" class="convert-help"></p>
+      <p class="convert-help">1 inch = 25,400 µm. With a known wire diameter: opening (µm) = 25,400 ÷ mesh count − wire diameter (µm).</p>
+    </div>
+    <div class="card">
+      <div class="gridttl">US standard sieve reference</div>
+      <p class="convert-help">Nominal openings; inches are calculated and rounded. The two coarsest entries are inch designations, not mesh counts.</p>
+      <p class="table-hint">Swipe the table to see all columns →</p><div class="scrollx" tabindex="0" role="region" aria-label="Scrollable data table"><table class="reftable"><thead><tr><th>US sieve</th><th>Microns (µm)</th><th>Inches</th></tr></thead><tbody id="conversion-reference"></tbody></table></div>
+      <p class="convert-help">Reference: <a href="https://www.globalgilson.com/blog/sieve-sizes" target="_blank" rel="noopener noreferrer">Gilson — ASTM E11 sieve sizes</a>.</p>
+    </div>
+  </div>
+</div>
+<div id="tab-mx" class="wrap" style="display:none">
+ <div class="card">
+  <h2 style="margin:0;color:var(--teal)">Mixer</h2>
+  <p class="convert-help">Choose a target. Add your measurements. Find a trial blend.</p><button class="secondary" onclick="loadExample()">Try the F320 example</button>
+  <div class="mix-fields">
+   <label>Grain range<select id="mix-kind" onchange="mixTargets()"><option value="micro">Micro</option><option value="macro">Macro</option></select></label>
+   <label>FEPA series<select id="mix-series" onchange="mixTargets()"><option>F</option><option>P</option></select></label>
+   <label>Target grit<select id="mix-target" onchange="mixDraw()"></select></label>
+   <label>Number of bags<select id="mix-count" onchange="mixCount()"><option>1</option><option selected>2</option><option>3</option></select></label>
+   <label>Batch weight (kg)<input id="mix-batch" type="number" inputmode="decimal" min="0" step="any" value="100" oninput="mixClear()"></label>
+  </div>
+  <div id="mix-limits" class="tabnote" style="margin-top:12px"></div>
+  <p id="mix-guidance" class="convert-help"></p>
+  <p class="convert-help">Changing range, series, grit or bag count clears bag entries. Leaving this tab keeps entries until the app is reloaded.</p>
+ </div>
+ <div id="mix-bags"></div>
+ <button class="primary" onclick="mixRun()">Calculate blend <span aria-hidden="true">↗</span></button>
+ <div id="mix-result" role="status" aria-live="polite"></div>
+ <details class="card"><summary>How the calculation works</summary>
+  <p>Micro: your D3 is the coarse end (97% undersize). D50 is 50% undersize; D94 and D95 are 6% and 5% undersize. The model interpolates cumulative percentage along log particle size between the measured points. It blends these curves by bag weight and reads the resulting diameters; it never averages D-values.</p>
+  <p>Below the finest measured point, the model assumes a zero-percent endpoint one adjacent log-size interval away. F-series uses the same tail extension above D3. P-series uses measured D0 as the maximum: mixing cannot reduce the maximum size of an included bag. These assumptions are uncertain, especially in the tails. For F1200/F1500 the target D80 is estimated from the curve built from your D94 measurement.</p>
+  <p>Macro: individual sieve fractions combine by mass. The solver checks the named single-sieve and combination limits in the reference data. It does not treat a single-sieve limit as cumulative retention from the top of the stack.</p>
+  <p>The solver seeks a blend inside all limits, favoring a safety margin of up to one percentage point at the control boundaries, within available stock. A valid solution may omit one bag. Only compatible materials measured on a consistent basis should be combined; for volume-based reports, equal density is required for mass weighting.</p>
+  <p>F180 and F220 use their two basic control sieves together for the 40% minimum. Reference: <a href="https://zhongsen-refractory.com/en/reports/download/filename/fepa-particle-distribution-f8-f220-fused-aluminium-oxide-and-silicon-carbide" target="_blank" rel="noopener">manufacturer distribution chart</a>. Results are calculations against the supplied reference data, not FEPA certification. Micro results always need laboratory confirmation.</p>
+ </details>
 </div>
 
 <footer>
-  <span class="fcredit">Created by <strong>Bonny George</strong></span>
+  <span class="fcredit">Developed by Bonny George</span>
   <span class="fver" id="ver"></span>
 </footer>
 
-<nav>
-  <button data-tab="fm" onclick="switchTab('fm',this)">Fm<span class="t2">FEPA Macro</span></button>
-  <button data-tab="pm" onclick="switchTab('pm',this)">Pm<span class="t2">FEPA-P Macro</span></button>
-  <button data-tab="fu" onclick="switchTab('fu',this)">Fµ<span class="t2">FEPA Micro</span></button>
-  <button class="on" data-tab="pu" onclick="switchTab('pu',this)">Pµ<span class="t2">FEPA-P Micro</span></button>
-  <button data-tab="ju" onclick="switchTab('ju',this)">Jµ<span class="t2">JIS Micro</span></button>
-</nav>
+<nav class="bottom-nav" aria-label="Main navigation"><button data-page="ref" class="on" onclick="switchTab(lastReference)"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="3"/><path d="M8 8h8M8 12h8M8 16h5"/></svg><span>Reference</span></button><button data-page="cv" onclick="switchTab('cv')"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16m-4-4 4 4-4 4M20 17H4m4-4-4 4 4 4"/></svg><span>Converter</span></button><button data-page="mx" onclick="switchTab('mx')"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 3h6M10 3v6L4 19a1.5 1.5 0 0 0 1.3 2h13.4a1.5 1.5 0 0 0 1.3-2L14 9V3M7 15h10"/></svg><span>Mixer</span></button></nav>
 
 <script>
 /* ========= FEPA Standards Reference — MGP Koratty ========= */
-const APP_VERSION = "v1.7";
-const LAST_UPDATED = "16 Jul 2026";
+const APP_VERSION = "v2.0";
+const LAST_UPDATED = "18 Sep 2026";
 document.getElementById('ver').textContent = APP_VERSION;
 
 /* ASTM E11 sieve openings in microns (US mesh no. -> µm) */
@@ -148,7 +110,7 @@ const MESH_UM = {
   '5/16':8000,'0.265':6700,'3½':5600,'4':4750,'5':4000,'6':3350,'7':2800,'8':2360,
   '10':2000,'12':1700,'14':1400,'16':1180,'18':1000,'20':850,'25':710,'30':600,
   '35':500,'40':425,'45':355,'50':300,'60':250,'70':212,'80':180,'100':150,
-  '120':125,'140':106,'170':90,'200':75,'230':63,'270':53,'325':45
+  '120':125,'140':106,'170':90,'200':75,'230':63,'270':53,'325':45,'400':38
 };
 
 /* Retention spec groups (% cumulative retained; per FEPA 42-1:2006)
@@ -208,12 +170,13 @@ function renderDetail(grit){
   // Row 2 — coarse control: ≤ c2%
   rows.push({no:'2', mesh:s[1], um:um(s[1]), ret:'≤'+grp.c2+'%', cls:'max', note:'coarse control'});
   // Row 3 — control sieve: ≥ c3%
-  rows.push({no:'3', mesh:s[2], um:um(s[2]), ret:'≥'+grp.c3+'%', cls:'min', note:'cumulative'});
+  const basic = ['F180','F220'].includes(grit) ? s[3].slice(0,2) : [s[2]];
+  rows.push({no:basic.length===2?'3+4':'3', mesh:basic.join(' + '), um:um(basic[basic.length-1]), ret:'≥'+grp.c3+'%', cls:'min', note:basic.length===2?'combined sieves':'single sieve'});
   // Row 4 — combination sieves: ≥ c4% (label spans the point numbers, e.g. 3+4 or 3+4+5)
   const combo = s[3];
   const comboNo = combo.map((_,i)=>3+i).join('+');
   rows.push({no:comboNo, mesh:combo.join(' + '), um:um(combo[combo.length-1]),
-             ret:'≥'+grp.c4+'%', cls:'min', note:'cumulative on '+combo.join('+')});
+             ret:'≥'+grp.c4+'%', cls:'min', note:'combined on '+combo.join('+')});
   // Row 5 — fines control (if any): ≤3% through
   if(s[4]) rows.push({no:String(3+combo.length), mesh:s[4], um:um(s[4]), ret:'≤3%', cls:'max', note:'through (fines)'});
 
@@ -224,8 +187,8 @@ function renderDetail(grit){
       <td><span class="ret ${r.cls}">${r.ret}</span><span class="rownote">${r.note}</span></td>
     </tr>`).join('');
 
-  const specLine = `<b>100% min</b> ${grp.c2}% max · <b>${grp.c3}% min</b> · ${grp.c4}% min`
-                   + (grp.thru? ' · <b>3% max</b> through fines' : ' · (no fines sieve)');
+  const specLine = `<b>100% passes No.1</b> · ${grp.c2}% max · <b>${grp.c3}% min</b> · ${grp.c4}% min`
+                   + (s[4]? ' · <b>3% max</b> through fines' : ' · (no fines sieve)');
 
   document.getElementById('detail').innerHTML = `
     <div class="selhead">
@@ -236,7 +199,7 @@ function renderDetail(grit){
         <div class="m"><div class="lbl">Method</div><div class="val">Sieving</div></div>
       </div>
     </div>
-    <div class="grpspec">Grading limits (cumulative % retained): ${specLine}</div>
+    <div class="grpspec">Grading limits (individual / combined % retained): ${specLine}</div>
     <table>
       <thead><tr><th>No.</th><th>Sieve&nbsp;No.</th><th style="text-transform:none">Micron (µm)</th><th>Retention</th></tr></thead>
       <tbody>${trs}</tbody>
@@ -303,7 +266,7 @@ function renderPDetail(grit){
       </div>
     </div>
     <div class="grpspec">Cumulative % retained on No.1 → No.5 control sieves. Middle rows are min–max
-      windows; No.5 is the ≤3%-fines pass-through sieve.</div>
+      windows; No.5 is the fines pass-through sieve; its limit is shown below.</div>
     <table>
       <thead><tr><th>No.</th><th>Sieve&nbsp;No.</th><th style="text-transform:none">Micron (µm)</th><th>Retention</th></tr></thead>
       <tbody>${trs}</tbody>
@@ -354,7 +317,7 @@ function coatedMicroTable(){
   const body = P_MICRO.map(r=>`<tr>
       <td class="g">${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td>
       <td class="lo">${r[3]}</td><td class="d50">${r[4]}</td><td class="hi">${r[5]}</td><td>${r[6]}</td></tr>`).join('');
-  return `<div class="scrollx"><table class="reftable">
+  return `<p class="table-hint">Swipe the table to see all columns →</p><div class="scrollx" tabindex="0" role="region" aria-label="Scrollable data table"><table class="reftable">
       <thead><tr>
         <th>Grit</th><th>d<sub>s0</sub><small>µm · max</small></th><th>d<sub>s3</sub><small>µm · max</small></th>
         <th>Lower<small>d₅₀ min</small></th><th>d<sub>s50</sub><small>µm · median</small></th><th>Upper<small>d₅₀ max</small></th>
@@ -367,7 +330,7 @@ function bondedMicroTable(){
   const body = F_MICRO.map(r=>`<tr>
       <td class="g">${r[0]}</td><td>${r[1]}</td>
       <td class="lo">${r[2]}</td><td class="d50">${r[3]}</td><td class="hi">${r[4]}</td><td>${r[5]}</td></tr>`).join('');
-  return `<div class="scrollx"><table class="reftable">
+  return `<p class="table-hint">Swipe the table to see all columns →</p><div class="scrollx" tabindex="0" role="region" aria-label="Scrollable data table"><table class="reftable">
       <thead><tr>
         <th>Grit</th><th>d<sub>s3</sub><small>µm · max</small></th>
         <th>Lower<small>d₅₀ min</small></th><th>d<sub>s50</sub><small>µm · median</small></th><th>Upper<small>d₅₀ max</small></th>
@@ -379,7 +342,7 @@ function bondedMicroTable(){
 function jTable(){
   const body = J_MICRO.map(r=>`<tr>
       <td class="g">${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td><td class="d50">${r[3]}</td><td>${r[4]}</td></tr>`).join('');
-  return `<div class="scrollx"><table class="reftable">
+  return `<p class="table-hint">Swipe the table to see all columns →</p><div class="scrollx" tabindex="0" role="region" aria-label="Scrollable data table"><table class="reftable">
       <thead><tr>
         <th>Grit</th><th>d<sub>s0</sub> max<small>µm</small></th><th>d<sub>s3</sub> max<small>µm</small></th>
         <th>d<sub>s50</sub> range<small>µm · median</small></th><th>d<sub>s94</sub> min<small>µm</small></th>
@@ -406,14 +369,225 @@ const HEADS = {
   pm:'FEPA-Standard 43-1:2006 · Coated Abrasives · Macro Grits (P12–P220)',
   fu:'FEPA-Standard 42-2:2006 · Bonded Abrasives · Micro Grits (F230–F1500)',
   pu:'FEPA-Standard 43-2:2006 · Coated Abrasives · Micro Grits (P240–P3000)',
-  ju:'JIS R6001 · Abrasive Micro Grits (J-series)'
+  ju:'JIS R6001 · Abrasive Micro Grits (J-series)',
+  cv:'US Standard Sieves · Mesh, Micron & Inch Converter',
+  mx:'FEPA Mixer · Bag Ratios & Trial Blends'
 };
+let lastReference='pu';
 function switchTab(tab, btn){
-  ['fm','pm','fu','pu','ju'].forEach(t=>document.getElementById('tab-'+t).style.display = (t===tab?'block':'none'));
-  document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('on', b===btn));
+  ['fm','pm','fu','pu','ju','cv','mx'].forEach(t=>document.getElementById('tab-'+t).style.display = (t===tab?'block':'none'));
+  const isRef=!['cv','mx'].includes(tab); if(isRef)lastReference=tab;
+  document.getElementById('reference-switch').hidden=!isRef;
+  document.querySelectorAll('[data-ref]').forEach(b=>{b.classList.toggle('on',b.dataset.ref===tab);b.setAttribute('aria-pressed',String(b.dataset.ref===tab));});
+  document.querySelectorAll('[data-page]').forEach(b=>{const active=b.dataset.page===(isRef?'ref':tab);b.classList.toggle('on',active);if(active)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current');});
+  document.getElementById('page-title').textContent=isRef?'Precision, by grade.':tab==='cv'?'Every size, translated.':'A better blend.';
+  document.getElementById('section-eyebrow').textContent=isRef?'THE GRAIN LIBRARY':tab==='cv'?'THE CONVERSION DESK':'THE BLENDING WORKSPACE';
   document.getElementById('subhead').textContent = HEADS[tab];
   window.scrollTo({top:0,behavior:'smooth'});
 }
+
+/* Converter uses nominal sieve openings, never FEPA grit numbers. */
+const sieveEntries = Object.entries(MESH_UM).sort((a,b)=>b[1]-a[1]);
+function sieveLabel(key){return ['5/16','0.265'].includes(key) ? key+' in' : 'No. '+key;}
+function formatOpening(value){return Number(value.toPrecision(7)).toLocaleString('en-US',{maximumFractionDigits:10});}
+document.getElementById('conversion-sieve').innerHTML = sieveEntries.map(([key,value])=>`<option value="${key}">${sieveLabel(key)} — ${value.toLocaleString('en-US')} µm</option>`).join('');
+document.getElementById('conversion-sieve').value = '100';
+document.getElementById('conversion-reference').innerHTML = sieveEntries.map(([key,value])=>`<tr><td class="g">${sieveLabel(key)}</td><td>${value.toLocaleString('en-US')}</td><td>${formatOpening(value/25400)}</td></tr>`).join('');
+function setConversionMode(){
+  const mode=document.getElementById('conversion-mode').value;
+  document.getElementById('sieve-field').hidden=mode!=='standard';
+  document.getElementById('value-field').hidden=mode==='standard';
+  document.getElementById('value-label').textContent=mode==='estimate'?'Mesh number':mode==='inch'?'Opening (inches)':'Opening (µm)';
+  document.getElementById('conversion-value').value=mode==='estimate'?'100':mode==='inch'?'0.005905512':'150';
+  renderConversion();
+}
+function renderConversion(){
+  const mode=document.getElementById('conversion-mode').value;
+  const output=document.getElementById('conversion-result');
+  const note=document.getElementById('conversion-note');
+  const value=Number(document.getElementById('conversion-value').value);
+  note.textContent='';
+  if(mode!=='standard' && (!Number.isFinite(value)||value<=0)){
+    output.textContent='Enter a number greater than zero.';return;
+  }
+  let microns;
+  if(mode==='standard'){
+    const key=document.getElementById('conversion-sieve').value;
+    microns=MESH_UM[key];
+    note.textContent=sieveLabel(key)+' uses the nominal standard opening. Inch values are rounded conversions.';
+  }else if(mode==='estimate'){
+    microns=15000/value;
+    note.textContent='Approximate only: µm ≈ 15,000 ÷ mesh; inches ≈ 0.590551 ÷ mesh. Most useful around 100–400 mesh; not a standard sieve lookup.';
+    if(value<100||value>400)note.textContent+=' This input is outside that range; use a standard sieve value where available.';
+  }else{
+    microns=mode==='inch'?value*25400:value;
+    note.textContent=mode==='inch'?'Microns = inches × 25,400.':'Inches = microns ÷ 25,400.';
+    note.textContent+=' A mesh designation requires a sieve standard; unit conversion alone does not define it.';
+  }
+  if(!Number.isFinite(microns)||microns<=0||microns/25400===0){output.textContent='Value is outside the supported numeric range.';return;}
+  const prefix=mode==='estimate'?'≈ ':'';
+  output.innerHTML=`<div>${mode==='estimate'?'Estimated opening':'Opening'}</div><strong>${prefix}${formatOpening(microns)} µm</strong><br><strong>${prefix}${formatOpening(microns/25400)} inches</strong>`;
+}
+setConversionMode();
+/* Mixer: bag measurements use cumulative oversize D-values.
+   Quantile constraints are applied to weighted CDFs, not averaged diameters. */
+const mix$=id=>document.getElementById(id);
+const mixFmt=x=>Number(x.toFixed(4)).toLocaleString('en-US',{maximumFractionDigits:4});
+let mixBags=2;
+function mixTarget(){return mix$('mix-target').value;}
+function mixIsMicro(){return mix$('mix-kind').value==='micro';}
+function mixIsP(){return mix$('mix-series').value==='P';}
+function mixSpec(){
+ const target=mixTarget();
+ if(mixIsMicro()){
+  const p=mixIsP(),r=(p?P_MICRO:F_MICRO).find(r=>r[0]===target), n=x=>parseFloat(x.replace(/[<>*]/g,''));
+  return p?{d0:r[1]==='—'?null:n(r[1]),coarse:n(r[2]),low:n(r[3]),high:n(r[5]),fine:n(r[6]),q:.05,fineName:'D95'}:{d0:null,coarse:n(r[1]),low:n(r[2]),high:n(r[4]),fine:n(r[5]),q:['F1200','F1500'].includes(target)?.2:.06,fineName:['F1200','F1500'].includes(target)?'D80':'D94'};
+ }
+ return null;
+}
+function mixMacro(){
+ const target=mixTarget(), p=mixIsP(),rules=[];let sieves;
+ if(p){const r=P_MACRO[target];sieves=[r[1],...r[8]];
+  rules.push({label:'No.1 retained',keys:[r[1]],lo:0,hi:0},{label:'No.2 retained',keys:[r[2]],lo:0,hi:r[3]});
+  for(const [keys,band,label] of [[r[4],r[5],'No.2+3 retained'],[r[6],r[7],'No.2+3+4 retained']]){const [lo,hi]=band.split('–').map(Number);rules.push({label,keys,lo,hi});}
+  rules.push({label:'No.2+3+4+5 retained',keys:r[8],lo:r[9],hi:100},{label:'Pan / fines',keys:['pan'],lo:0,hi:r[11]});
+ }else{const r=GRITS[target],s=r.s,g=GROUPS[r.g];sieves=[s[0],s[1],...s[3],...(s[4]?[s[4]]:[])];
+  rules.push({label:'No.1 retained',keys:[s[0]],lo:0,hi:0},{label:'No.2 retained',keys:[s[1]],lo:0,hi:g.c2},
+   {label:['F180','F220'].includes(target)?'No.3+4 retained':'No.3 retained',keys:['F180','F220'].includes(target)?s[3].slice(0,2):[s[2]],lo:g.c3,hi:100},{label:'Combination retained',keys:s[3],lo:g.c4,hi:100});
+  if(s[4])rules.push({label:'Pan / fines',keys:['pan'],lo:0,hi:3});
+ }
+ return {sieves:[...new Set(sieves)],rules};
+}
+function mixTargets(){
+ const list=mixIsMicro()?(mixIsP()?P_MICRO:F_MICRO).map(r=>r[0]):(mixIsP()?P_ORDER:ORDER);
+ mix$('mix-target').innerHTML=list.map(x=>`<option>${x}</option>`).join('');
+ mix$('mix-target').value=mixIsMicro()?(mixIsP()?'P320':'F320'):(mixIsP()?'P220':'F220');
+ mixDraw();
+}
+function mixDraw(){
+ const micro=mixIsMicro(),spec=mixSpec(),macro=micro?null:mixMacro();
+ mix$('mix-limits').textContent=micro?`${mixTarget()}: ${spec.d0!==null?'D0 < '+spec.d0+' µm · ':''}D3 < ${spec.coarse} µm · D50 ${spec.low}–${spec.high} µm · ${spec.fineName} > ${spec.fine} µm`:`${mixTarget()} sieve stack: ${macro.sieves.map(x=>sieveLabel(x)+' ('+um(x)+' µm)').join(' → ')} → pan.`;
+ mix$('mix-guidance').textContent=micro?'Enter actual measured sizes in µm, ordered coarse to fine: D3 ≥ D50 ≥ D94/D95. Use compatible material of the same density, measured with the same method and percentage basis. Estimates require a lab trial.':'Enter individual mass % retained on each sieve in the displayed stack, plus pan. Each bag must total 100%. Combination limits sum the named sieve fractions; they do not include earlier sieves. Limits use the supplied reference tables; confirm them against your controlled specification.';
+ const fields=micro?[...(mixIsP()?['D0']:[]),'D3','D50',mixIsP()?'D95':'D94']:macro.sieves.concat('pan');
+ mix$('mix-bags').innerHTML=Array.from({length:mixBags},(_,i)=>`<div class="card mix-bag"><h3>Bag ${i+1}</h3><div class="mix-fields"><label>Available kg<input id="bag-${i}-stock" type="number" inputmode="decimal" min="0" step="any" placeholder="Optional / unlimited" oninput="mixClear()"></label>${fields.map((f,j)=>`<label>${micro?f+' (µm)':f==='pan'?'Pan (%)':sieveLabel(f)+' retained (%)'}<input id="bag-${i}-${j}" type="number" inputmode="decimal" min="0" step="any" placeholder="Required" oninput="mixClear()"></label>`).join('')}</div></div>`).join('');
+ mixClear();
+}
+function mixClear(){mix$('mix-result').innerHTML='';}
+function mixCount(){mixBags=Number(mix$('mix-count').value);mixDraw();}
+function mixReadNumber(id,optional=false){const raw=mix$(id).value.trim();if(raw===''&&optional)return Infinity;const x=Number(raw);if(raw===''||!Number.isFinite(x)||x<0)throw new Error('Enter valid, non-negative values in every required field.');return x;}
+/* Log-size linear interpolation between measured cumulative undersize points.
+   Assumed tails extend one adjacent log-size interval beyond outer measured points. */
+function mixCurve(d,p){
+ const points=p?[[.05,d[3]],[.5,d[2]],[.97,d[1]],[1,d[0]]]:[[.06,d[2]],[.5,d[1]],[.97,d[0]]];
+ const bottom=points[0][1]*points[0][1]/points[1][1];
+ points.unshift([0,bottom]);
+ if(!p){const last=points[points.length-1][1],prev=points[points.length-2][1];points.push([1,last*last/prev]);}
+ return points;
+}
+function mixCDF(points,x){
+ if(x<points[0][1])return 0;
+ let q=0;
+ for(let i=0;i<points.length;i++){
+  if(x>=points[i][1])q=points[i][0];
+  else {if(i===0)return 0;const [qa,a]=points[i-1],[qb,b]=points[i];return qa+(qb-qa)*Math.log(x/a)/Math.log(b/a);}
+ }
+ return q;
+}
+function mixQuantile(curves,w,q){
+ let lo=Math.min(...curves.map(c=>c[0][1])),hi=Math.max(...curves.map(c=>c[c.length-1][1]));
+ for(let k=0;k<75;k++){const mid=(lo+hi)/2,v=curves.reduce((s,c,i)=>s+w[i]*mixCDF(c,mid),0);if(v>=q)hi=mid;else lo=mid;}return hi;
+}
+function mixLinearSolve(a,b){
+ const n=b.length,m=a.map((r,i)=>r.concat(b[i]));
+ for(let k=0;k<n;k++){
+  let pivot=k;for(let i=k+1;i<n;i++)if(Math.abs(m[i][k])>Math.abs(m[pivot][k]))pivot=i;
+  if(Math.abs(m[pivot][k])<1e-11)return null;
+  [m[k],m[pivot]]=[m[pivot],m[k]];
+  const divisor=m[k][k];for(let j=k;j<=n;j++)m[k][j]/=divisor;
+  for(let i=0;i<n;i++)if(i!==k){const f=m[i][k];for(let j=k;j<=n;j++)m[i][j]-=f*m[k][j];}
+ }
+ return m.map(r=>r[n]);
+}
+/* Small linear program: maximize common safety margin t, sum(weights)=1.
+   Enumerate vertices for up to three bags; no coarse percentage search grid. */
+function mixOptimize(n,stock,batch,rules){
+ const constraints=[];
+ for(let i=0;i<n;i++){
+  let a=Array(n+1).fill(0);a[i]=-1;constraints.push({a,b:0});
+  if(Number.isFinite(stock[i])){a=Array(n+1).fill(0);a[i]=1;constraints.push({a,b:stock[i]/batch});}
+ }
+ rules.forEach(r=>constraints.push({a:r.a.concat(r.margin||0),b:r.b}));
+ constraints.push({a:Array(n).fill(0).concat(-1),b:0},{a:Array(n).fill(0).concat(1),b:1});
+ const sum=Array(n).fill(1).concat(0);let best=null;
+ function choose(start,ids){
+  if(ids.length===n){const rows=ids.map(i=>constraints[i]);const x=mixLinearSolve([sum,...rows.map(r=>r.a)],[1,...rows.map(r=>r.b)]);
+   if(!x||constraints.some(r=>r.a.reduce((v,a,i)=>v+a*x[i],0)>r.b+1e-9))return;
+   if(!best||x[n]>best[n]+1e-10)best=x;return;}
+  for(let i=start;i<=constraints.length-(n-ids.length);i++)choose(i+1,ids.concat(i));
+ }
+ choose(0,[]);return best;
+}
+function mixRun(){
+ try{
+  const batch=mixReadNumber('mix-batch');if(batch<=0)throw new Error('Batch weight must be greater than zero.');
+  const micro=mixIsMicro(),p=mixIsP(),spec=mixSpec(),macro=micro?null:mixMacro(),fields=micro?(p?4:3):macro.sieves.length+1;
+  const stock=[],data=[],curves=[];
+  for(let i=0;i<mixBags;i++){
+   stock.push(mixReadNumber(`bag-${i}-stock`,true));
+   const d=Array.from({length:fields},(_,j)=>mixReadNumber(`bag-${i}-${j}`));
+   if(micro){if(d.some(x=>x<=0)||d.some((x,j)=>j>0&&x>=d[j-1]))throw new Error(`Bag ${i+1}: sizes must be positive and strictly descending (coarse to fine). Equal rounded values do not define this interpolation model.`);const curve=mixCurve(d,p);if(curve.some(point=>!Number.isFinite(point[1])||point[1]<=0))throw new Error('Particle sizes exceed the supported numeric range.');curves.push(curve);}
+   else if(d.some(x=>x>100)||Math.abs(d.reduce((a,b)=>a+b,0)-100)>.01)throw new Error(`Bag ${i+1}: individual retained percentages plus pan must total 100% (±0.01%).`);
+   data.push(d);
+  }
+  if(stock.reduce((a,b)=>a+b,0)<batch-1e-8)throw new Error('Available stock is less than the requested batch weight.');
+  const rules=[];
+  if(micro){
+   // Strict FEPA inequalities get a small interior buffer in cumulative probability.
+   const eps=1e-6;
+   function lowerCDF(x,q){rules.push({a:curves.map(c=>-mixCDF(c,x)),b:-q-eps,margin:.01});}
+   function upperCDF(x,q){rules.push({a:curves.map(c=>mixCDF(c,x)),b:q-eps,margin:.01});}
+   lowerCDF(spec.coarse,.97);upperCDF(spec.low,.5);lowerCDF(spec.high,.5);upperCDF(spec.fine,spec.q);
+   if(spec.d0!==null)data.forEach((d,i)=>{if(d[0]>=spec.d0){const a=Array(mixBags).fill(0);a[i]=1;rules.push({a,b:0});}});
+  }else{
+   const keys=macro.sieves.concat('pan');
+   macro.rules.forEach(r=>{const values=data.map(d=>r.keys.reduce((s,k)=>s+d[keys.indexOf(k)],0)/100);rules.push({a:values,b:r.hi/100,margin:r.hi>0&&r.hi<100?.01:0});if(r.lo>0)rules.push({a:values.map(v=>-v),b:-r.lo/100,margin:.01});});
+  }
+  const solution=mixOptimize(mixBags,stock,batch,rules);
+  if(!solution){mix$('mix-result').innerHTML='<div class="tabnote"><b>No blend found within these limits and stock quantities.</b> '+(micro?'This is a result of the assumed distributions, not proof that a physical blend is impossible.':'Check bag measurements, stock and the target specification.')+'</div>';return;}
+  let weights=solution.slice(0,mixBags).map(x=>Math.abs(x)<1e-10?0:x);const total=weights.reduce((a,b)=>a+b);weights=weights.map(x=>x/total);
+  const rows=[];
+  if(micro){
+   const q3=mixQuantile(curves,weights,.97),q50=mixQuantile(curves,weights,.5),qFine=mixQuantile(curves,weights,spec.q);
+   if(p){const d0=Math.max(...data.filter((_,i)=>weights[i]>0).map(d=>d[0]));rows.push(['D0',d0,spec.d0===null?'Not specified':'< '+spec.d0,spec.d0===null?null:d0<spec.d0]);}
+   rows.push(['D3',q3,'< '+spec.coarse,q3<spec.coarse],['D50',q50,spec.low+'–'+spec.high,q50>=spec.low&&q50<=spec.high],[spec.fineName,qFine,'> '+spec.fine,qFine>spec.fine]);
+  }else{const keys=macro.sieves.concat('pan');macro.rules.forEach(r=>{const v=data.reduce((s,d,i)=>s+weights[i]*r.keys.reduce((sum,k)=>sum+d[keys.indexOf(k)],0),0);rows.push([r.label,v,r.lo===r.hi?String(r.lo):r.lo+'–'+r.hi,v>=r.lo-1e-7&&v<=r.hi+1e-7]);});}
+  const passed=rows.every(r=>r[3]!==false);
+  mix$('mix-result').innerHTML=`<div class="card"><h3>${passed?(micro?'Estimated trial blend':'Calculated blend'):'Candidate needs review'} — ${mixTarget()}</h3><p>${micro?'Predicted values from an assumed distribution. Confirm a small trial in the lab before production.':'Calculated from individual retained mass fractions and the supplied limits. Confirm the mixed batch by sieve analysis.'}</p><p class="table-hint">Swipe the table to see all columns →</p><div class="scrollx" tabindex="0" role="region" aria-label="Scrollable data table"><table class="reftable"><thead><tr><th>Bag</th><th>Mix %</th><th>Weight (kg)</th></tr></thead><tbody>${weights.map((w,i)=>`<tr><td>Bag ${i+1}</td><td>${mixFmt(w*100)}</td><td>${mixFmt(w*batch)}</td></tr>`).join('')}</tbody></table></div><p class="convert-help">Total ${mixFmt(batch)} kg. Quantities are rounded for display; use suitable weighing precision. Zero means leave that bag out.</p><p class="table-hint">Swipe the table to see all columns →</p><div class="scrollx" tabindex="0" role="region" aria-label="Scrollable data table"><table class="reftable"><thead><tr><th>Measure</th><th>${micro?'Estimated µm':'Retained %'}</th><th>Target</th><th>Check</th></tr></thead><tbody>${rows.map(r=>`<tr><td>${r[0]}</td><td>${mixFmt(r[1])}</td><td>${r[2]}</td><td>${r[3]===null?'—':r[3]?'Within limits':'Outside limits'}</td></tr>`).join('')}</tbody></table></div></div>`;
+ }catch(e){mix$('mix-result').textContent=e.message;}
+}
+mixTargets();
+
+
+function loadExample(){
+ document.getElementById('mix-kind').value='micro';document.getElementById('mix-series').value='F';mixTargets();
+ document.getElementById('mix-target').value='F320';document.getElementById('mix-count').value='2';mixCount();document.getElementById('mix-batch').value='100';
+ [[48,32,18],[47,26,17]].forEach((row,i)=>row.forEach((v,j)=>document.getElementById('bag-'+i+'-'+j).value=v));mixRun();
+}
+let installPrompt=null;
+function showInstall(){
+ if(installPrompt){installPrompt.prompt();installPrompt=null;return;}
+ const file=location.protocol==='file:',native=location.hostname==='mgp.local';
+ document.getElementById('install-copy').textContent=native?'You are already using the installed Android app.':file?'This is the local preview. To install the web app on your phone, first host the supplied PWA folder over HTTPS. Then open that address in Safari or Chrome.':'On iPhone: open this page in Safari, tap Share, then Add to Home Screen. On Android: use your browser menu and select Install app or Add to Home screen.';
+ document.getElementById('install-dialog').showModal();
+}
+if(typeof window.addEventListener==='function'){
+ window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();installPrompt=e;});
+ window.addEventListener('load',()=>{
+  if('serviceWorker' in navigator && ['https:','http:'].includes(location.protocol) && location.hostname!=='mgp.local')navigator.serviceWorker.register('./sw.js').catch(()=>{});
+  if(location.hostname==='mgp.local'||window.matchMedia('(display-mode: standalone)').matches)document.querySelector('.install').hidden=true;
+ });
+}
+
 </script>
-</body>
+<dialog id="install-dialog" aria-labelledby="install-title"><h2 id="install-title">Keep it close.</h2><p id="install-copy"></p><p>Once saved for offline use, the references and calculators stay available without a connection.</p><form method="dialog"><button class="primary">Got it</button></form></dialog></body>
 </html>
